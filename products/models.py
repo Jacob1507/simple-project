@@ -11,7 +11,7 @@ User = get_user_model()
 
 class Product(models.Model):
     name = models.CharField(max_length=255, verbose_name=_("Name")),
-    price = models.DecimalField(max_digits=10, verbose_name=_("Price"))
+    price = models.FloatField(verbose_name=_("Price"))
     description = models.CharField(max_length=500, verbose_name=_("Description"))
 
     def __str__(self):
