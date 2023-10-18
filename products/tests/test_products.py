@@ -1,9 +1,9 @@
 from products.tests import utils as product_testutils
 from products import logic as product_logic
-from utils.test import MongoTestCaseHelper
+from utils.test import HelperMongoTestCase
 
 
-class BasicProductsTest(MongoTestCaseHelper):
+class BasicProductsTest(HelperMongoTestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = product_testutils.create_user(username="Customer")

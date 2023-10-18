@@ -1,6 +1,8 @@
 from django.db.models import QuerySet
 from django.test import TestCase
 from django.conf import settings
+from rest_framework import status
+from rest_framework.test import APIClient
 
 
 class settings:
@@ -31,7 +33,24 @@ class MongoTestCase(TestCase):
         super()._post_teardown()
 
 
-class MongoTestCaseHelper(MongoTestCase):
+class HelperMongoTestCase(MongoTestCase):
     def assert_list_result(self, query: QuerySet, expected: list, msg: str = ""):
         """Compares query output with expected data"""
         self.assertListEqual(list(query), expected, msg)
+
+
+class MongoAPITestCase(MongoTestCase):
+    client_class = APIClient
+
+
+class MongoHelperAPITestCase(MongoAPITestCase):
+    def get_list_results(self, response):
+        self.assertEqual(response.status_code, status.HTTP_200_OK, str(response.data))
+        self.assertIsNotNone(response.data, str(response.data))
+        return response.data
+
+    def as_user(self, user, action):
+        self.client.force_authenticate(user=user)
+        result = action()
+        self.client.force_authenticate(user=None)
+        return result

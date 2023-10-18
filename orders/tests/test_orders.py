@@ -5,10 +5,10 @@ from django.utils import timezone
 from products.tests import utils as product_testutils
 from orders.tests import utils as order_testutils
 from orders import logic as order_logic
-from utils.test import MongoTestCaseHelper
+from utils.test import HelperMongoTestCase
 
 
-class BasicOrderTest(MongoTestCaseHelper):
+class BasicOrderTest(HelperMongoTestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = product_testutils.create_user(username="Customer")
