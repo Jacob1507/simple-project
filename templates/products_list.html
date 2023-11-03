@@ -13,7 +13,7 @@
                         {{ product.price }}
                     </small>
                 </div>
-                 <img src="{{ product.image }}" title="{{ product.name }}">
+                 <img src="\media\images\test.jpg" title="{{ product.name }}" width="200" height="200">
                 <p class="mb-1">{{ product.description|safe }}</p>
                 <small class="text-muted">
                     {% for category in product.categories%}
@@ -28,5 +28,4 @@
 {% else %}
     <h1>No products added</h1>
 {% endif %}
-
 {% endblock %}
