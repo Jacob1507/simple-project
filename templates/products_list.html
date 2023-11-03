@@ -17,7 +17,7 @@
                 <p class="mb-1">{{ product.description|safe }}</p>
                 <small class="text-muted">
                     {% for category in product.categories%}
-                        {{ category }}
+                        {{ category.name }}
                     {% endfor %}
                  </small>
             </a>
