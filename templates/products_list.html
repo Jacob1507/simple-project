@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block default %}
+
+{% if products %}
+        <div class="list-group">
+        {% for product in products %}
+             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{ product.name }}</h5>
+                    <small class="text-muted">
+                        {{ product.price }}
+                    </small>
+                </div>
+                 <img src="{{ product.image }}" title="{{ product.name }}">
+                <p class="mb-1">{{ product.description|safe }}</p>
+                <small class="text-muted">
+                    {% for category in product.categories%}
+                        {{ category }}
+                    {% endfor %}
+                 </small>
+            </a>
+            <button type="button" class="btn btn-light">Add</button>
+
+        {% endfor %}
+        </div>
+{% else %}
+    <h1>No products added</h1>
+{% endif %}
+
+{% endblock %}
